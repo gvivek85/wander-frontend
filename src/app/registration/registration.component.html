@@ -1,0 +1,73 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row fxLayoutAlign="center center">
+    <span> Covid Application</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+
+<div fxLayoutAlign="center center" fxFlexFill class="login">
+  <mat-card fxFlex="25">
+    <mat-toolbar color="primary">New User Registration</mat-toolbar>
+    <form [formGroup]="registrationForm" (ngSubmit)="registerUser(registrationForm.value)" class="example-form"
+      fxLayoutAlign="stretch" fxLayout="column" class="login-form">
+      <mat-error>{{msg}}</mat-error>
+
+      <!-- Frist Name Field -->
+      <mat-form-field>
+        <mat-label>First Name</mat-label>
+        <input matInput placeholder="First Name" formControlName="firstName" name="firstName" id="firstName" required>
+        <mat-error *ngIf="hasError('firstName', 'required')">First Name is required</mat-error>
+      </mat-form-field>
+
+      <!-- Last Name Field -->
+      <mat-form-field>
+        <mat-label>Last Name</mat-label>
+        <input matInput placeholder="Last Name" formControlName="lastName" name="lastName" id="lastName" required>
+        <mat-error *ngIf="hasError('lastName', 'required')">Last Name is required</mat-error>
+      </mat-form-field>
+
+      <!-- emailId Field -->
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Email" formControlName="email" name="email" id="email" 
+        pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" required>
+        <mat-error *ngIf="hasError('email', 'required')">Email Id is required</mat-error>
+        <mat-error *ngIf="hasError('email', 'pattern')">Email Id is not valid</mat-error>
+      </mat-form-field>
+
+      <!-- Username Field -->
+      <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="Username" formControlName="username" name="username" id="username" required>
+        <mat-error *ngIf="hasError('username', 'required')">Username is required</mat-error>
+      </mat-form-field>
+
+      <!-- Password Field -->
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="Password" formControlName="password" type="password" name="password" required>
+        <mat-error *ngIf="hasError('password', 'required')">Password is required</mat-error>
+        <mat-error *ngIf="hasError('password','minlength')">Password must have at least {{minPw}} characters</mat-error>
+      </mat-form-field>
+
+      <!-- Confirm Password Field -->
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="Password" formControlName="confirmPassword" type="Password" name="confirmPassword"
+          required>
+        <mat-error *ngIf="hasError('confirmPassword', 'required')">Password is required</mat-error>
+        <mat-error
+          *ngIf="registrationForm.controls['confirmPassword'].pristine || registrationForm.controls['confirmPassword'].errors?.MatchPassword">
+          Password does not match</mat-error>
+      </mat-form-field>
+
+      <mat-card-actions>
+        <button mat-raised-button color="primary" class="login-button">Register</button>
+
+        <button mat-flat-button [routerLink]="['/']" target="_blank" class="registration">Already a User ? Sign
+          In</button>
+      </mat-card-actions>
+
+    </form>
+  </mat-card>
+</div>

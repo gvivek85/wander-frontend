@@ -1,0 +1,35 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row fxLayoutAlign="center center">
+    <span> Covid Application</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+
+<div fxLayoutAlign="center center" fxFlexFill class="login">
+  <mat-card fxFlex="25">
+    <mat-toolbar color="primary">Login</mat-toolbar>
+    <form [formGroup]="loginForm" (ngSubmit)="loginUser(loginForm.value)" class="example-form" fxLayoutAlign="stretch"
+      fxLayout="column" class="login-form">
+      <mat-error>{{msg}}</mat-error>
+      <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="Username" formControlName="username" name="username" id="username" required>
+        <mat-error *ngIf="hasError('username', 'required')">Username is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="Password" formControlName="password" type="password" name="password" required>
+        <mat-error *ngIf="hasError('password', 'required')">Password is required</mat-error>
+      </mat-form-field>
+
+      <mat-card-actions >
+        <button mat-raised-button color="primary" [disabled]="!loginForm.valid" class="login-button">Login</button>
+        
+        <button mat-flat-button [routerLink]="['/registration']" target="_blank" class="registration">New User?
+          Register</button>
+      </mat-card-actions>
+    
+    </form>
+  </mat-card>
+</div>
