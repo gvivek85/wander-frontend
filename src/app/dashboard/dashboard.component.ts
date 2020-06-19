@@ -39,6 +39,8 @@ export class DashboardComponent implements OnInit {
   cardData2: string;
   cardData3: string;
 
+  //todayDate
+  todayDate;
 
   //Table Data
   displayedColumns: string[] = ['Country', 'TotalConfirmed', 'TotalDeaths', 'TotalRecovered'];
@@ -104,7 +106,7 @@ export class DashboardComponent implements OnInit {
           options: {
             title: {
               display: true,
-              text: 'United States Confirmed Cases'
+              text: 'United States Daily Cases'
             },
             legend: {
               display: false
@@ -120,7 +122,7 @@ export class DashboardComponent implements OnInit {
               yAxes: [{
                 display: true,
                 scaleLabel: {
-                  labelString: 'No in Thousands',
+                  labelString: 'Number (100K)',
                   display: true
                 }
               }]
@@ -161,7 +163,7 @@ export class DashboardComponent implements OnInit {
           options: {
             title: {
               display: true,
-              text: 'Brazil Confirmed Cases'
+              text: 'Brazil Daily Cases'
             },
             legend: {
               display: false
@@ -177,7 +179,7 @@ export class DashboardComponent implements OnInit {
               yAxes: [{
                 display: true,
                 scaleLabel: {
-                  labelString: 'No in Thousands',
+                  labelString: 'Number (100K)',
                   display: true
                 }
               }]
@@ -185,7 +187,7 @@ export class DashboardComponent implements OnInit {
           },
           title: {
             display: true,
-            text: 'India Confirmed Cases'
+            text: 'Brzail Daily Cases'
           }
         })
       });
@@ -223,7 +225,7 @@ export class DashboardComponent implements OnInit {
           options: {
             title: {
               display: true,
-              text: 'Russia Confirmed Cases'
+              text: 'Russia Daily Cases'
             },
             legend: {
               display: false
@@ -239,7 +241,7 @@ export class DashboardComponent implements OnInit {
               yAxes: [{
                 display: true,
                 scaleLabel: {
-                  labelString: 'No in Thousands',
+                  labelString: 'Number (100K)',
                   display: true
                 }
               }]
@@ -247,7 +249,7 @@ export class DashboardComponent implements OnInit {
           },
           title: {
             display: true,
-            text: 'India Confirmed Cases'
+            text: 'Russia Confirmed Cases'
           }
         })
       });
@@ -301,7 +303,7 @@ export class DashboardComponent implements OnInit {
               yAxes: [{
                 display: true,
                 scaleLabel: {
-                  labelString: 'No in Thousands',
+                  labelString: 'Number (100K)',
                   display: true
                 }
               }]
@@ -316,25 +318,33 @@ export class DashboardComponent implements OnInit {
     //Line Chart 4 - End
 
     //Pie Chart - Start
+    this.dashboardService.pieChart().subscribe(
+      res=>{
+        let countryList =  res.countryList;
+        let deathList =  res.noOfDeaths;
+        let date = new Date();
+        this.todayDate = date.toLocaleDateString('en', { month: 'short', day: 'numeric' });
+
+        this.pieChart = new Chart('pieChart', {
+          type: 'pie',
+          data: {
+            datasets: [{
+              data: deathList,
+              backgroundColor: ['#C0392B','#F39C12','#F4D03F','#27AE60'],
+              label: 'Dataset 1'
+            }],
+            labels: countryList
+          },
+          options: {
+            responsive: true
+          }, 
+          title: {
+            display: true,
+            text: 'India Confirmed Cases'
+          }
+        });
+      });
     
-    this.pieChart = new Chart('pieChart', {
-			type: 'pie',
-			data: {
-				datasets: [{
-					data: [1,5,40,32],
-					backgroundColor: ['#C0392B','#F39C12','#F4D03F','#27AE60'],
-					label: 'Dataset 1'
-				}],
-				labels: ['Red',	'Orange',	'Yellow', 'Green']
-			},
-			options: {
-				responsive: true
-      }, 
-      title: {
-        display: true,
-        text: 'India Confirmed Cases'
-      }
-		});
     //Pie Chart - End
 
   }

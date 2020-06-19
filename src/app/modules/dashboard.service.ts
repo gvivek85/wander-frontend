@@ -37,4 +37,7 @@ export class DashboardService {
     return this._http.get("http://localhost:9001/dashboard/getCountrySpecificData/India");
   }
 
+  public pieChart(): Observable<any> {
+    return this._http.get("http://localhost:9001/dashboard/getCountryDeaths");
+  }
 }

@@ -11,3 +11,9 @@ table {
     font-size: 14px;
     width: 100%;
   }
+
+  .pie-chart {
+    height: 85%;
+    width: 100%;
+    
+  }

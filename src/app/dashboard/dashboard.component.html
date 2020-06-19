@@ -1,79 +1,86 @@
-
 <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px" class="stats-cards">
-  
-  <mat-card fxFlex="33" >
-    <span><h4><b>Total Confirmed Cases</b></h4></span>
+
+  <mat-card fxFlex="33">
+    <span>
+      <h4><b>Total Confirmed Cases</b></h4>
+    </span>
     <span>{{cardData1}}</span>
   </mat-card>
   <mat-card fxFlex="33">
-    <span><h4><b>Total Deaths</b></h4></span>
-    <span >{{cardData2}}</span>
+    <span>
+      <h4><b>Total Deaths</b></h4>
+    </span>
+    <span>{{cardData2}}</span>
   </mat-card>
 
   <mat-card fxFlex="33">
-    <span><h4><b>Total Recovered</b></h4></span>
+    <span>
+      <h4><b>Total Recovered</b></h4>
+    </span>
     <span>{{cardData3}}</span>
   </mat-card>
-   
+
 </div>
 <br>
 
 <mat-divider></mat-divider>
 
 <br>
-<div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+<div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="20px">
   <div fxFlex="50">
-      <div class="mat-elevation-z8">
-        
-        <mat-form-field style="width: 250px !important; padding-left: 20px;"> 
-          <mat-label>Filter</mat-label>
-          <input matInput (keyup)="applyFilter($event)" placeholder="Filter Data">
-        </mat-form-field>
+    <div class="mat-elevation-z8">
 
-          <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
-            
-            <!-- Position Column -->
-            <ng-container matColumnDef="Country">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>  Country </th>
-              <td mat-cell *matCellDef="let element"> {{element.Country}} </td>
-            </ng-container>
-        
-            <!-- Name Column -->
-            <ng-container matColumnDef="TotalConfirmed">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> TotalConfirmed </th>
-              <td mat-cell *matCellDef="let element"> {{element.TotalConfirmed}} </td>
-            </ng-container>
-        
-            <!-- Weight Column -->
-            <ng-container matColumnDef="TotalDeaths">
-              <th mat-header-cell *matHeaderCellDef  mat-sort-header> Total Deaths </th>
-              <td mat-cell *matCellDef="let element"> {{element.TotalDeaths}} </td>
-            </ng-container>
-        
-            <!-- Symbol Column -->
-            <ng-container matColumnDef="TotalRecovered" >
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Total Recovered </th>
-              <td mat-cell *matCellDef="let element"> {{element.TotalRecovered}} </td>
-            </ng-container>
+      <mat-form-field style="width: 250px !important; padding-left: 20px;">
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Filter Data">
+      </mat-form-field>
 
-      
-        
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-          </table>
-        
-          <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-        </div>
-        
+      <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="Country">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Country </th>
+          <td mat-cell *matCellDef="let element"> {{element.Country}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="TotalConfirmed">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> TotalConfirmed </th>
+          <td mat-cell *matCellDef="let element"> {{element.TotalConfirmed}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="TotalDeaths">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Total Deaths </th>
+          <td mat-cell *matCellDef="let element"> {{element.TotalDeaths}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="TotalRecovered">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Total Recovered </th>
+          <td mat-cell *matCellDef="let element"> {{element.TotalRecovered}} </td>
+        </ng-container>
+
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+
   </div>
 
   <div fxFlex="50">
-    <mat-card ><h4><b>No of Deaths today (top 4 countries)</b></h4></mat-card>
-     <mat-card >
+    <mat-card>
+      <h4><b>No of Deaths as on {{todayDate}} (top 4 countries)</b></h4>
+    </mat-card>
+    <mat-card class="pie-chart">
       <canvas id="pieChart">{{pieChart}}</canvas>
     </mat-card>
   </div>
-  
+
 </div>
 
 
@@ -84,8 +91,9 @@
 <br>
 
 <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px" class="stats-cards">
-   <!-- <app-widget-area [data]="bigChart"></app-widget-area>-->
-   <mat-card fxFlex="50" >
+
+  <!-- <app-widget-area [data]="bigChart"></app-widget-area>-->
+  <mat-card fxFlex="50">
     <canvas id="lineChart" title="United States">{{lineChart1}}</canvas>
   </mat-card>
 
@@ -102,16 +110,12 @@
 
 <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px" class="stats-cards">
   <!-- <app-widget-area [data]="bigChart"></app-widget-area>-->
-  <mat-card fxFlex="50" >
-   <canvas id="lineChart3" title="Russia">{{lineChart3}}</canvas>
- </mat-card>
+  <mat-card fxFlex="50">
+    <canvas id="lineChart3" title="Russia">{{lineChart3}}</canvas>
+  </mat-card>
 
- <mat-card fxFlex="50">
-   <canvas id="lineChart4" title="India">{{lineChart4}}</canvas>
- </mat-card>
+  <mat-card fxFlex="50">
+    <canvas id="lineChart4" title="India">{{lineChart4}}</canvas>
+  </mat-card>
 
 </div>
-
-
-
-
