@@ -40,4 +40,8 @@ export class DashboardService {
   public pieChart(): Observable<any> {
     return this._http.get("http://localhost:9001/dashboard/getCountryDeaths");
   }
+
+  public getUsers(): Observable<any> {
+    return this._http.get("http://localhost:9001/user/getUserList");
+  }
 }
