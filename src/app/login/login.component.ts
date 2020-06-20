@@ -4,6 +4,7 @@ import { RegistrationService } from '../registration.service';
 import { User } from '../user';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Component({
@@ -34,6 +35,7 @@ export class LoginComponent implements OnInit {
   loginUser(loginForm) {
     this.user.username = loginForm.username;
     this.user.password = loginForm.password;
+
     this._regService.loginUser(this.user).subscribe(
       data => {
         if (null != data.responseCode && data.responseCode == 1004) {
@@ -42,7 +44,25 @@ export class LoginComponent implements OnInit {
         } else {
           this.accessToken = data.accessToken;
           localStorage.setItem('ACCESS_TOKEN',this.accessToken);
-          this._route.navigate(['/dashboard']);
+          
+          //Fetch the user details from the backend API and set it to localStorage
+          this._regService.userDetails(this.accessToken).subscribe(
+            data=> {
+              if(data){              
+                let userAuthority = data.authorities[0].authority;
+                console.log('User object' + userAuthority);
+                localStorage.setItem('userAuthority',userAuthority);
+                localStorage.setItem('name', data.name);
+                localStorage.setItem('emailId', data.email);
+                this._route.navigate(['/dashboard']);
+              }
+            },
+            error => {
+              console.log('exception occured');
+              this.msg = "Unable to fetch user";
+            });
+
+           
         }
       },
       error => {
@@ -51,5 +71,4 @@ export class LoginComponent implements OnInit {
       }
     );
   }
-
 }

@@ -16,6 +16,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
 import { UsersComponent } from '../users/users.component';
+import { AuthorizationService } from '../authorization.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { UsersComponent } from '../users/users.component';
     MatInputModule
   ],
   providers: [
-    DashboardService
+    DashboardService,
+    AuthorizationService
   ]
 })
 export class DefaultModule { }

@@ -16,7 +16,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import {ReactiveFormsModule} from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AuthorizationService } from './authorization.service';
 
 
 @NgModule({
@@ -40,7 +41,7 @@ import {ReactiveFormsModule} from '@angular/forms';
     MatToolbarModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AuthorizationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

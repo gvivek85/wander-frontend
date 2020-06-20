@@ -1,8 +1,8 @@
 <mat-nav-list>
     <div class="profile-card">
         <div class="header">
-            <h2>Vivek Gupta</h2>
-            <h4>vivek.gupta85@email.com</h4>
+            <h2>Welcome {{userName}} !!</h2>
+            <h4>{{emailId}}</h4>
         </div>
         
     </div>
@@ -11,7 +11,7 @@
     <h2 matSubheader>Pages</h2>
 
     <a mat-list-item routerLinkActive="list-item-active" routerLink="/dashboard">Dashboard</a>
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/dashboard/users">User Maintenance</a>
+    <a mat-list-item routerLinkActive="list-item-active" *ngIf="userAuthority == 'AUTHORITY_USER_MAINTAINANCE'" routerLink="/dashboard/users">User Maintenance</a>
 
     <mat-divider></mat-divider>
 

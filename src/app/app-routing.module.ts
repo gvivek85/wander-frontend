@@ -5,10 +5,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { DefaultComponent } from './default/default.component';
 import { UsersComponent } from './users/users.component'
+import { AuthorizationService } from './authorization.service';
 
 const routes: Routes = [
   {path:'',component:LoginComponent},
   {path:'dashboard', component:DefaultComponent,
+  canActivate: [AuthorizationService],
     children:[{
       path: '',
       component: DashboardComponent

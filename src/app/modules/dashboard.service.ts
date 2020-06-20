@@ -8,51 +8,62 @@ import { AppConfig } from '../appConfig/appConfig';
 })
 export class DashboardService {
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization' : 'Bearer ' + localStorage.getItem('ACCESS_TOKEN')
-    })
-  };
-  
   constructor(private _http: HttpClient) {  
       
   }
 
   public getCardData(): Observable<any> {
-    return this._http.get(AppConfig.API_ENDPOINT + "/dashboard/getGlobalData", this.httpOptions);
+    let tokenStr = 'Bearer ' + localStorage.getItem('ACCESS_TOKEN');
+    const headers = new HttpHeaders().set("Authorization", tokenStr);
+    return this._http.get(AppConfig.API_ENDPOINT + "/dashboard/getGlobalData", {headers});
   }
 
   public getCountryData(): Observable<any> {
-    return this._http.get(AppConfig.API_ENDPOINT + "/dashboard/getTopCountriesData", this.httpOptions);
+    let tokenStr = 'Bearer ' + localStorage.getItem('ACCESS_TOKEN');
+    const headers = new HttpHeaders().set("Authorization", tokenStr);
+    return this._http.get(AppConfig.API_ENDPOINT + "/dashboard/getTopCountriesData", {headers});
   }
 
   public bigChart(): Observable<any> {
-    return this._http.get(AppConfig.API_ENDPOINT + "/dashboard/getSummary", this.httpOptions);
+    let tokenStr = 'Bearer ' + localStorage.getItem('ACCESS_TOKEN');
+    const headers = new HttpHeaders().set("Authorization", tokenStr);
+    return this._http.get(AppConfig.API_ENDPOINT + "/dashboard/getSummary", {headers});
   }
 
   public linChart1(): Observable<any> {
-    return this._http.get(AppConfig.API_ENDPOINT + "/dashboard/getCountrySpecificData/united-states", this.httpOptions);
+    let tokenStr = 'Bearer ' + localStorage.getItem('ACCESS_TOKEN');
+    const headers = new HttpHeaders().set("Authorization", tokenStr);
+    return this._http.get(AppConfig.API_ENDPOINT + "/dashboard/getCountrySpecificData/united-states", {headers});
   }
 
   public linChart2(): Observable<any> {
-    return this._http.get(AppConfig.API_ENDPOINT + "/dashboard/getCountrySpecificData/Brazil", this.httpOptions);
+    let tokenStr = 'Bearer ' + localStorage.getItem('ACCESS_TOKEN');
+    const headers = new HttpHeaders().set("Authorization", tokenStr);
+    return this._http.get(AppConfig.API_ENDPOINT + "/dashboard/getCountrySpecificData/Brazil", {headers});
   }
 
   public linChart3(): Observable<any> {
-    return this._http.get(AppConfig.API_ENDPOINT + "/dashboard/getCountrySpecificData/Russia");
+    let tokenStr = 'Bearer ' + localStorage.getItem('ACCESS_TOKEN');
+    const headers = new HttpHeaders().set("Authorization", tokenStr);
+    return this._http.get(AppConfig.API_ENDPOINT + "/dashboard/getCountrySpecificData/Russia", {headers});
   }
 
   public linChart4(): Observable<any> {
-    return this._http.get(AppConfig.API_ENDPOINT + "/dashboard/getCountrySpecificData/India", this.httpOptions);
+    let tokenStr = 'Bearer ' + localStorage.getItem('ACCESS_TOKEN');
+    const headers = new HttpHeaders().set("Authorization", tokenStr);
+    return this._http.get(AppConfig.API_ENDPOINT + "/dashboard/getCountrySpecificData/India", {headers});
   }
 
   public pieChart(): Observable<any> {
-    return this._http.get(AppConfig.API_ENDPOINT + "/dashboard/getCountryDeaths", this.httpOptions);
+    let tokenStr = 'Bearer ' + localStorage.getItem('ACCESS_TOKEN');
+    const headers = new HttpHeaders().set("Authorization", tokenStr);
+    return this._http.get(AppConfig.API_ENDPOINT + "/dashboard/getCountryDeaths", {headers});
   }
 
   public getUsers(): Observable<any> {
-    return this._http.get(AppConfig.API_ENDPOINT + "/user/getUserList", this.httpOptions);
+    let tokenStr = 'Bearer ' + localStorage.getItem('ACCESS_TOKEN');
+    const headers = new HttpHeaders().set("Authorization", tokenStr);
+    return this._http.get(AppConfig.API_ENDPOINT + "/user/getUserList", {headers});
   }
 
 

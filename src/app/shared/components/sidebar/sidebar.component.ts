@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/user';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
+  userAuthority : string;
+  userName: string;
+  emailId: string;
+  
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.userAuthority = localStorage.getItem('userAuthority');
+    this.userName = localStorage.getItem('name');
+    this.emailId = localStorage.getItem('emailId');
   }
 
 }
