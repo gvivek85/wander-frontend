@@ -38,10 +38,10 @@ export class LoginComponent implements OnInit {
       data => {
         if (null != data.responseCode && data.responseCode == 1004) {
           console.log('exception occured');
-          this.msg = data.responseMsg;
+          this.msg = data.responseMsg;         
         } else {
           this.accessToken = data.accessToken;
-          console.log(this.accessToken);
+          localStorage.setItem('ACCESS_TOKEN',this.accessToken);
           this._route.navigate(['/dashboard']);
         }
       },
