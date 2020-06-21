@@ -1,5 +1,5 @@
 export class AppConfig {
 
-    public static API_ENDPOINT='http://localhost:9001';
+    public static API_ENDPOINT='http://3.228.6.34:9001';
 
  }
