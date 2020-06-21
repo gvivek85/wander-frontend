@@ -106,7 +106,7 @@ export class DashboardComponent implements OnInit {
           options: {
             title: {
               display: true,
-              text: 'United States Daily Cases'
+              text: 'United States Total Cases'
             },
             legend: {
               display: false
@@ -163,7 +163,7 @@ export class DashboardComponent implements OnInit {
           options: {
             title: {
               display: true,
-              text: 'Brazil Daily Cases'
+              text: 'Brazil Total Cases'
             },
             legend: {
               display: false
@@ -225,7 +225,7 @@ export class DashboardComponent implements OnInit {
           options: {
             title: {
               display: true,
-              text: 'Russia Daily Cases'
+              text: 'Russia Total Cases'
             },
             legend: {
               display: false
@@ -287,7 +287,7 @@ export class DashboardComponent implements OnInit {
           options: {
             title: {
               display: true,
-              text: 'India Confirmed Cases'
+              text: 'India Total Cases'
             },
             legend: {
               display: false
